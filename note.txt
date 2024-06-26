@@ -1,0 +1,24 @@
+articles.reverse();
+    articles.forEach((article)=> {
+        let date = new Date;
+        let day = date.getDate();
+        let year = date.getFullYear();
+        let month = date.getMonth();
+    
+        date = `${day}th ${month} ${year} `
+        articleContent += `
+            <div class="article">
+            <i class="ri-star-fill star"></i>
+            <img src="image/${article.image}" alt="read read read" class="read">
+            <div class="link">
+                <span><h1 class="title">${article.title}</h1></span>
+                <span class="date">Date: ${date}</span><br>
+                <span class="views">● ${article.views} views</span>
+            </div>
+            <div class="options">
+                <button class="read-later"><i class="ri-add-circle-fill"></i>Add to favorites</button>
+                <a href="" class="read-now">Read now<i class="ri-arrow-right-up-line arrow"></i></a>
+            </div>
+            </div>
+            `;
+        

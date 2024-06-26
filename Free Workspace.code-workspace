@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"name": "Free Workspace",
+			"path": "."
+		},
+		{
+			"name": "assets",
+			"path": "../backend-work/adminpanel/assets"
+		}
+	],
+	"settings": {
+		"liveServer.settings.port": 5501,
+		"liveServer.settings.multiRootWorkspaceName": "Free Workspace"
+	}
+}

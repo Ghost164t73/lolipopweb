@@ -1,0 +1,61 @@
+
+
+            main.classList.add("show-main")
+            image.classList.add("show-image")
+            header.classList.remove("sticky-header")
+            document.body.style.overflow = "hidden"
+
+
+    
+const express = require('express');
+const bodyParser = require('body-parser');
+const app = express();
+const port = 3000;
+
+app.use(bodyParser.json());
+
+let articles = []; // Assume you have an array to store your articles
+
+app.put('/update-views/:articleId', (req, res) => {
+    const articleId = req.params.articleId;
+    
+    // Find the article in your array or database
+    const article = articles.find((article) => article.id === articleId);
+
+    if (!article) {
+        return res.status(404).json({ error: 'Article not found' });
+    }
+
+    // Update the view count
+    article.views += 1;
+
+    // Save the updated article to the database or update the record in your array
+
+    res.json({ success: true, views: article.views });
+});
+
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+});
+
+
+function updateViewCount(index) {
+    articles[index].views += 1;
+    document.querySelector(`#views-${index}`).textContent = `● ${articles[index].views} views`;
+
+    // Make an API call to update the view count on the server
+    fetch(`/update-views/${articles[index].id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({}),
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('View count updated on the server:', data);
+    })
+    .catch(error => {
+        console.error('Error updating view count on the server:', error);
+    });
+}
